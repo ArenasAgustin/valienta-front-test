@@ -10,7 +10,7 @@ export default function Cards() {
     const dispatch = useDispatch();
     const characterArray = useSelector(state => state.characterArray);
 
-    const [cards, setCards] = useState(characterArray);
+    const [cards, setCards] = useState([]);
 
     useEffect(() => {
         dispatch(getAll());

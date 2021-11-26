@@ -1,0 +1,27 @@
+.header__container {
+    margin: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+
+    .header__title {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: end;
+
+        .header__logo {
+            width: 600px;
+            max-width: 90%; 
+            height: auto;
+        }
+    
+        .header__subtitle {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 1em;
+            color: rgb(60,62,68);
+        }
+    }
+}

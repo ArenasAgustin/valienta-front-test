@@ -7,7 +7,7 @@ export default function NavBar() {
             <nav className='navbar__element'>
                 <a href="/" className="navbar__logo">
                     <img
-                        src="https://help.redbubble.com/hc/article_attachments/360002309526/Rick_and_Morty_-_logo__English_.png"
+                        src="https://i.pinimg.com/originals/36/60/b1/3660b1fbf2ecd990202c611b6a9942df.png"
                         alt="logo Rick and Morty"
                         className="navbar__logo-img"
                     />

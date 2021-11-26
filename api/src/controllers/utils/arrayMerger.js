@@ -41,7 +41,6 @@ const arrayMerger = async (arrayDB, arrayApi) => {
   try {
     const array = [...arrayDB];
     arrayApi = await formatter(arrayApi);
-    console.log(arrayApi, "11111111");
 
     for (let i = 0; i < arrayApi.length; i++) {
       let equal = false;
