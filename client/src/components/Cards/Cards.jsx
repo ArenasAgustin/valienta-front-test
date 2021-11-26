@@ -22,8 +22,10 @@ export default function Cards() {
     }, [characterArray]);
 
     //number of cards
-    const [currentPage, setCurrentPage] = useState(1);
-    const [countCards, setCountCards] = useState(12);
+    const [page, setPage] = useState({
+        currentPage: 1,
+        countCards: 12,
+    });
 
     //number of buttons
     const [pageNumberLimit, setPageNumberLimit] = useState(5);
@@ -32,33 +34,46 @@ export default function Cards() {
 
     //buttons array
     const pages = [];
-    for (let i = 1; i <= Math.ceil(cards.length / countCards); i++) pages.push(i);
+    for (let i = 1; i <= Math.ceil(cards.length / page.countCards); i++) pages.push(i);
 
     //function to change the page
     const handleClick = event => {
-        setCurrentPage(Number(event.target.id))
+        setPage({
+            ...page,
+            currentPage: Number(event.target.id)
+        })
     }
 
     //page changes
-    const indexLastItem = currentPage * countCards;
-    const indexFirstItem = indexLastItem - countCards;
+    const indexLastItem = page.currentPage * page.countCards;
+    const indexFirstItem = indexLastItem - page.countCards;
     const cardsPagesArray = cards.slice(indexFirstItem, indexLastItem);
 
-    //function of prev
+    //function of next
     const handleNext = () => {
-        setCurrentPage(currentPage + 1);
+        if (page.currentPage < pages[pages.length - 1]) {
+            setPage({
+                ...page,
+                currentPage: page.currentPage + 1
+            });
+        }
 
-        if (currentPage + 1 > maxPageNumberLimit) {
+        if (page.currentPage + 1 > maxPageNumberLimit) {
             setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
             setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
         }
     }
 
-    //function of next
+    //function of prev
     const handlePrev = () => {
-        setCurrentPage(currentPage - 1);
+        if (page.currentPage > 1) {
+            setPage({
+                ...page,
+                currentPage: page.currentPage - 1
+            });
+        }
 
-        if ((currentPage - 1) % pageNumberLimit === 0) {
+        if ((page.currentPage - 1) % pageNumberLimit === 0 && page.currentPage !== 1) {
             setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
             setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
         }
@@ -86,7 +101,7 @@ export default function Cards() {
             <Pagination
                 pages={pages}
                 handleClick={handleClick}
-                currentPage={currentPage}
+                page={page}
                 maxPageNumberLimit={maxPageNumberLimit}
                 minPageNumberLimit={minPageNumberLimit}
                 handleNext={handleNext}
