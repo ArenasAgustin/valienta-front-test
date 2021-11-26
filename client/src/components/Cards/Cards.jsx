@@ -21,10 +21,53 @@ export default function Cards() {
         setCards(characterArray);
     }, [characterArray]);
 
+    //number of cards
+    const [currentPage, setCurrentPage] = useState(1);
+    const [countCards, setCountCards] = useState(12);
+
+    //number of buttons
+    const [pageNumberLimit, setPageNumberLimit] = useState(5);
+    const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
+    const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
+
+    //buttons array
+    const pages = [];
+    for (let i = 1; i <= Math.ceil(cards.length / countCards); i++) pages.push(i);
+
+    //function to change the page
+    const handleClick = event => {
+        setCurrentPage(Number(event.target.id))
+    }
+
+    //page changes
+    const indexLastItem = currentPage * countCards;
+    const indexFirstItem = indexLastItem - countCards;
+    const cardsPagesArray = cards.slice(indexFirstItem, indexLastItem);
+
+    //function of prev
+    const handleNext = () => {
+        setCurrentPage(currentPage + 1);
+
+        if (currentPage + 1 > maxPageNumberLimit) {
+            setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
+            setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
+        }
+    }
+
+    //function of next
+    const handlePrev = () => {
+        setCurrentPage(currentPage - 1);
+
+        if ((currentPage - 1) % pageNumberLimit === 0) {
+            setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
+            setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
+        }
+    }
+
     return (
         <div className='card__container'>
             <div className='cards__container'>
-                {cards.map((character, index) => {
+                {cardsPagesArray.map((character, index) => {
                     return <Card
                         key={index}
                         name={character.name}
@@ -40,7 +83,15 @@ export default function Cards() {
 
             </div>
 
-            <Pagination />
+            <Pagination
+                pages={pages}
+                handleClick={handleClick}
+                currentPage={currentPage}
+                maxPageNumberLimit={maxPageNumberLimit}
+                minPageNumberLimit={minPageNumberLimit}
+                handleNext={handleNext}
+                handlePrev={handlePrev}
+            />
         </div>
     );
 }

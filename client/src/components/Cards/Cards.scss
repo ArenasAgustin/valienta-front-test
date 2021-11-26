@@ -1,6 +1,8 @@
 .card__container {
     width: 100%;
     max-width: 1700px;
+    background-color: rgb(36,40,47);
+    padding: 2em 0;
 
     .cards__container {
         width: 100%;
@@ -8,5 +10,6 @@
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
+        padding: 1em 0;
     }
 }
