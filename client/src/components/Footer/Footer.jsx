@@ -24,7 +24,7 @@ export default function Footer() {
 
                 <div className="footer__copy">
                     <p>
-                        <IoCodeSlashSharp /> 2021 - Portfolio by <a href="https://github.com/ArenasAgustin" target="_blank">Agustín Arenas</a>
+                        <IoCodeSlashSharp /> by: <a href="https://github.com/ArenasAgustin" target="_blank">Agustín Arenas</a>
                     </p>
                 </div>
             </div>

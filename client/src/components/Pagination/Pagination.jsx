@@ -1,4 +1,5 @@
 import React from 'react';
+import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
 import './Pagination.scss';
 
 export default function Pagination({ pages, page, handleClick, maxPageNumberLimit, minPageNumberLimit, handleNext, handlePrev }) {
@@ -11,7 +12,7 @@ export default function Pagination({ pages, page, handleClick, maxPageNumberLimi
                 onClick={handlePrev}
                 disabled={page.currentPage === pages[0] ? true : false}
             >
-                {'<'}
+                <IoChevronBackOutline />
             </li>
             {
                 pages.map(number => (
@@ -33,7 +34,7 @@ export default function Pagination({ pages, page, handleClick, maxPageNumberLimi
                 onClick={handleNext}
                 disabled={page.currentPage === pages[pages.length - 1] ? true : false}
             >
-                {'>'}
+                <IoChevronForwardOutline />
             </li>
         </ul>
     );
