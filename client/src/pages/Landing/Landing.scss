@@ -1,0 +1,65 @@
+.landing__background {
+    background-image: url('https://wallpapercave.com/wp/wp7310601.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .landing__container {
+        position: absolute;
+        top: 50%;
+        left: 75%;
+        transform: translate(-125px, -125px);
+        width: 250px;
+        height: 250px;
+
+        .landing__button {
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: rgb(36, 40, 47);
+            transition: opacity 1s ease;
+
+            .landing__button-txt {
+                font-size: 2.5em;
+                font-weight: bold;
+                z-index: 2;
+            }
+
+            .landing__button-opacity {
+                opacity: 1;
+                width: 250px;
+                height: 250px;
+                border-radius: 50%;
+                position: absolute;
+                z-index: 1;
+                background: rgb(202, 245, 188);
+                background: -moz-radial-gradient(circle, rgba(202, 245, 188, 1) 65%, rgba(100, 232, 79, 1) 89%);
+                background: -webkit-radial-gradient(circle, rgba(202, 245, 188, 1) 65%, rgba(100, 232, 79, 1) 89%);
+                background: radial-gradient(circle, rgba(202, 245, 188, 1) 65%, rgba(100, 232, 79, 1) 89%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#caf5bc", endColorstr="#64e84f", GradientType=1);
+                background-image: url('https://i.redd.it/0z3140ximmd01.jpg');
+                background-size: cover;
+                background-position: center;
+                opacity: .7;
+            }
+
+            &:hover {
+                .landing__button-opacity {
+                    opacity: 1;
+                    transition: opacity 1s ease;
+                }
+            }
+        }
+    }
+}
