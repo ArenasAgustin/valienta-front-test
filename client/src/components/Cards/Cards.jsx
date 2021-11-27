@@ -5,21 +5,23 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAll } from '../../redux/actions'
 import "./Cards.scss";
+import Filter from "../Filter/Filter";
 
 export default function Cards() {
     const dispatch = useDispatch();
-    const characterArray = useSelector(state => state.characterArray);
+    /* const characterArray = useSelector(state => state.characterArray); */
+    const filteredCharacterArray = useSelector(state => state.filteredCharacterArray);
 
     const [cards, setCards] = useState([]);
 
     useEffect(() => {
         dispatch(getAll());
-        setCards(characterArray);
+        setCards(filteredCharacterArray);
     }, [dispatch]);
 
     useEffect(() => {
-        setCards(characterArray);
-    }, [characterArray]);
+        setCards(filteredCharacterArray);
+    }, [filteredCharacterArray]);
 
     //number of cards
     const [page, setPage] = useState({
@@ -81,6 +83,8 @@ export default function Cards() {
 
     return (
         <div className='card__container'>
+            <Filter />
+
             <div className='cards__container'>
                 {cardsPagesArray.map((character, index) => {
                     return <Card

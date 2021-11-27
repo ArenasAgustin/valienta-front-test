@@ -32,15 +32,20 @@ const getAll = async (req, res) => {
   try {
     const characters = await Character.find();
 
-    const charactersApi = await axios.get(
+    const charactersApiPage1 = await axios.get(
       `https://rickandmortyapi.com/api/character/`
     );
     const charactersApiPage2 = await axios.get(
-      `https://rickandmortyapi.com/api/character/`
+      `https://rickandmortyapi.com/api/character/?page=2`
     );
+    const charactersApiPage3 = await axios.get(
+      `https://rickandmortyapi.com/api/character/?page=3`
+    );
+
     const charactersApiData = [
-      ...charactersApi.data.results,
+      ...charactersApiPage1.data.results,
       ...charactersApiPage2.data.results,
+      ...charactersApiPage3.data.results,
     ];
 
     const characterApiRefactored = await arrayMerger(

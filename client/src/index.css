@@ -35,6 +35,7 @@ ul {
   margin-inline-start: 0;
   margin-inline-end: 0;
   list-style-type: none;
+  padding-inline-start: 0;
 }
 
 a {
