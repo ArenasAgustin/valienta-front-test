@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAll } from '../../redux/actions'
 import "./Cards.scss";
 import Filter from "../Filter/Filter";
+import Loading from "../Loading/Loading";
 
 export default function Cards() {
     const dispatch = useDispatch();
@@ -82,35 +83,43 @@ export default function Cards() {
     }
 
     return (
-        <div className='card__container'>
-            <Filter />
+        <div className='card__container-background'>
+            <div className="card__container">
+                <Filter />
 
-            <div className='cards__container'>
-                {cardsPagesArray.map((character, index) => {
-                    return <Card
-                        key={index}
-                        name={character.name}
-                        status={character.status}
-                        species={character.species}
-                        gender={character.gender}
-                        image={character.image}
-                        location={character.location}
-                        episode={character.episode}
-                        id={character._id}
-                    />;
-                })}
+                {cardsPagesArray.length
+                    ? <>
+                        <div className='cards__container'>
+                            {cardsPagesArray.map((character, index) => {
+                                return <Card
+                                    key={index}
+                                    name={character.name}
+                                    status={character.status}
+                                    species={character.species}
+                                    gender={character.gender}
+                                    image={character.image}
+                                    location={character.location}
+                                    episode={character.episode}
+                                    id={character._id}
+                                />;
+                            })}
 
+                        </div>
+
+                        <Pagination
+                            pages={pages}
+                            handleClick={handleClick}
+                            page={page}
+                            maxPageNumberLimit={maxPageNumberLimit}
+                            minPageNumberLimit={minPageNumberLimit}
+                            handleNext={handleNext}
+                            handlePrev={handlePrev}
+                        />
+                    </>
+
+                    : <Loading />
+                }
             </div>
-
-            <Pagination
-                pages={pages}
-                handleClick={handleClick}
-                page={page}
-                maxPageNumberLimit={maxPageNumberLimit}
-                minPageNumberLimit={minPageNumberLimit}
-                handleNext={handleNext}
-                handlePrev={handlePrev}
-            />
         </div>
     );
 }
