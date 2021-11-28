@@ -20,7 +20,7 @@ export default function NavBar() {
                         </a>
                     </li>
                     <li className="navbar__item">
-                        <a href="/characters" className="navbar__link">
+                        <a href="/about" className="navbar__link">
                             About
                         </a>
                     </li>

@@ -1,0 +1,19 @@
+.about__link {
+    width: calc(100% - 4em);
+    background-color: rgb(36, 40, 47);
+    color: #eee;
+    padding: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    text-decoration: none;
+
+    h1 {
+        margin: 10px;
+    }
+
+    &-repository {
+        font-size: 1.6rem;
+        margin: 10px;
+    }
+}
