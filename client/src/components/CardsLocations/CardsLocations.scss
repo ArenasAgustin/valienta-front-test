@@ -1,0 +1,28 @@
+.card__container-background {
+    width: 100%;
+    background-color: rgb(36, 40, 47);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .card__container {
+        width: 100%;
+        min-height: 100vh;
+        padding-bottom: 1em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        .cards__container {
+            width: 100%;
+            max-width: 1700px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 1em 0;
+        }
+    }
+}

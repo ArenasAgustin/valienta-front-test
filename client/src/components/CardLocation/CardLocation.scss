@@ -1,0 +1,120 @@
+.card {
+    padding: 20px;
+    margin: 10px;
+    width: 16em;
+    background-color: rgb(60,62,68);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .22);
+
+        .card__header {
+            height: 40px;
+
+            .card__icon {
+                transform: translateX(-50%) translateY(-50%) scale(3);
+            }
+        }
+
+        .card__body {
+            height: 150px;
+
+            .card__about {
+                .card__about__li {
+                    transform: translateX(0);
+                    transition-timing-function: cubic-bezier(0, 1.5, 1, 1);
+                    transition-duration: .5s;
+
+                    @for $i from 1 through 6 {
+                        &:nth-child(#{$i}) {
+                            transition-delay: $i * .25s;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .card__header {
+        position: relative;
+        background: rgb(202, 245, 188);
+        background: -moz-radial-gradient(circle, rgba(202, 245, 188, 1) 65%, rgba(100, 232, 79, 1) 89%);
+        background: -webkit-radial-gradient(circle, rgba(202, 245, 188, 1) 65%, rgba(100, 232, 79, 1) 89%);
+        background: radial-gradient(circle, rgba(202, 245, 188, 1) 65%, rgba(100, 232, 79, 1) 89%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#caf5bc", endColorstr="#64e84f", GradientType=1);
+        height: 140px;
+        margin: -20px -20px 20px -20px;
+        transition: height .5s;
+        overflow: hidden;
+
+        .card__icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+            display: block;
+            width: 180px;
+            height: 180px;
+            transition: transform .5s;
+        }
+    }
+
+    .card__body {
+        height: 50px;
+        transition: height .5s;
+        overflow: hidden;
+
+        .card__title {
+            font-size: 1.4em;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #eee;
+        }
+
+        .card__description {
+            color: #9E9E9E;
+            font-style: italic;
+            padding-top: 0;
+            display: flex;
+            align-items: center;
+
+            .card__status {
+                border-radius: 50%;
+                width: .5rem;
+                height: .5rem;
+                margin-right: 0.375rem;
+            }
+
+            .card__status__alive {
+                background-color: rgb(85, 204, 68);
+            }
+
+            .card__status__dead {
+                background-color: rgb(214, 61, 46);
+            }
+
+            .card__status__unknown {
+                background-color: rgb(158, 158, 158);
+            }
+        }
+
+        .card__about {
+            margin-top: 10px;
+            color: #eee;
+
+            .card__about__li {
+                margin-top: 5px;
+                transition-duration: 0;
+                transition-delay: .5s;
+                transform: translateX(-120%);
+            }
+
+            .card__about__li__title {
+                font-size: 14px;
+                font-weight: 500;
+                color: rgb(158, 158, 158);
+            }
+        }
+    }
+}
