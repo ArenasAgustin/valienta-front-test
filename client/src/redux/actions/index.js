@@ -15,7 +15,7 @@ import {
 export const getAll = () => {
   return async (dispatch) => {
     try {
-      const characterArray = await axios.get(API_HOST);
+      const characterArray = await axios.get(`${API_HOST}/characters`);
 
       return dispatch({
         type: GET_CHARACTERS,

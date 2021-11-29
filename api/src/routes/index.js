@@ -1,11 +1,10 @@
-const  Router = require("express");
-const { getAll, getById, save } = require("../controllers/character");
+const { Router } = require('express');
 const router = Router();
+const characterRoute = require('./characters');
+const locationRoute = require('./locations');
 
-router.get("/", getAll);
+router.use('/characters', characterRoute);
 
-router.get("/:_id", getById);
-
-router.post("/", save);
+router.use('/locations', locationRoute);
 
 module.exports = router;
