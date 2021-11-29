@@ -19,4 +19,6 @@ export const RESET_ALL = 'RESET_ALL';
 
 // locations
 export const GET_LOCATIONS = 'GET_LOCATIONS';
-export const FILTER_NAME = 'FILTER_NAME';
+
+export const FILTER_NAME_LOCATION = 'FILTER_NAME_LOCATION';
+export const NO_FILTER_NAME_LOCATION = 'NO_FILTER_NAME_LOCATION';

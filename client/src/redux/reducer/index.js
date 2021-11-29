@@ -9,7 +9,8 @@ import {
   NO_FILTER_SEARCH,
   RESET_ALL,
   GET_LOCATIONS,
-  FILTER_NAME
+  FILTER_NAME_LOCATION,
+  NO_FILTER_NAME_LOCATION
 } from "../constants";
 
 const initialState = {
@@ -20,6 +21,7 @@ const initialState = {
   filterSearch: "all",
   character: {},
   locationsArray: [],
+  filteredLocationsArray: [],
   nameLocations: [],
   typeLocations: [],
 };
@@ -103,8 +105,21 @@ export const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         locationsArray: payload.locations,
+        filteredLocationsArray: payload.locations,
         nameLocations: payload.nameLocations,
         typeLocations: payload.typeLocations,
+      };
+    
+    case FILTER_NAME_LOCATION:
+      return {
+        ...state,
+        filteredLocationsArray: payload,
+      };
+
+    case NO_FILTER_NAME_LOCATION:
+      return {
+        ...state,
+        filteredLocationsArray: state.locationsArray,
       };
 
     default:

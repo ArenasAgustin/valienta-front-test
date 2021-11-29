@@ -1,6 +1,5 @@
 const axios = require("axios");
-
-let locations = [];
+const Location = require("../models/location");
 
 const getLocations = async (req, res) => {
   try {
@@ -14,21 +13,27 @@ const getLocations = async (req, res) => {
       "https://rickandmortyapi.com/api/location/?page=3"
     );
 
-    locations = [
+    const locations = [
       ...locationsPage1.data.results,
       ...locationsPage2.data.results,
       ...locationsPage3.data.results,
     ];
 
-    const typeLocations = new Set();
-    const nameLocations = new Set();
+    const typeLocations = new Set(["all"]);
+    const nameLocations = new Set(["all"]);
 
-    locations.map((location) => {
+    locations.map(async (location) => {
       typeLocations.add(location.type);
       nameLocations.add(location.name);
+      (await Location.findOne({ name: location.name })) ||
+        Location.create(location);
     });
 
-    res.send({ locations, typeLocations, nameLocations });
+    res.send({
+      locations,
+      typeLocations: [...typeLocations],
+      nameLocations: [...nameLocations],
+    });
   } catch (error) {
     res.send({
       status: "error",
@@ -37,20 +42,19 @@ const getLocations = async (req, res) => {
   }
 };
 
-const filterByName = (req, res) => {
+const filterByName = async (req, res) => {
   try {
     const { name } = req.params;
 
-    const filteredLocations = locations.filter((location) =>
-      location.name.toUppercase().includes(name.toUppercase())
-    );
+    name.replace("%20", " ");
 
-    res.send(filteredLocations);
+    console.log(name);  
+
+    const filteredLocations = await Location.findOne({ name });
+
+    res.send([filteredLocations]);
   } catch (error) {
-    res.send({
-      status: "error",
-      error,
-    });
+    res.send(error);
   }
 };
 

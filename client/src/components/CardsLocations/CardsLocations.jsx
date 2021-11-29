@@ -5,18 +5,18 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 /* import { getAll } from '../../redux/actions' */
 import "./CardsLocations.scss";
-import Filter from "../Filter/Filter";
+import FilterLocation from "../FilterLocation/FilterLocation";
 import Loading from "../Loading/Loading";
 
 export default function CardsLocations() {
-    const locationsArray = useSelector(state => state.locationsArray);
-    const filteredCharacterArray = useSelector(state => state.filteredCharacterArray);
+    /* const locationsArray = useSelector(state => state.locationsArray); */
+    const filteredCharacterArray = useSelector(state => state.filteredLocationsArray);
 
     const [cards, setCards] = useState([]);
 
     useEffect(() => {
-        setCards(locationsArray);
-    }, [locationsArray]);
+        setCards(filteredCharacterArray);
+    }, [filteredCharacterArray]);
 
     //number of cards
     const [page, setPage] = useState({
@@ -79,7 +79,7 @@ export default function CardsLocations() {
     return (
         <div className='card__container-background'>
             <div className="card__container">
-                <Filter />
+                <FilterLocation />
 
                 {cardsPagesArray.length
                     ? <>

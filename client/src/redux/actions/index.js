@@ -11,7 +11,8 @@ import {
   NO_FILTER_SEARCH,
   RESET_ALL,
   GET_LOCATIONS,
-  FILTER_NAME,
+  FILTER_NAME_LOCATION,
+  NO_FILTER_NAME_LOCATION,
 } from "../constants";
 
 // characters
@@ -91,13 +92,13 @@ export const getAllLocations = () => {
   };
 };
 
-export const filterByName = (name) => {
+export const filterByNameLocation = (name) => {
   return async (dispatch) => {
     try {
       const locationArray = await axios.get(`${API_HOST}/locations/${name}`);
 
       return dispatch({
-        type: FILTER_NAME,
+        type: FILTER_NAME_LOCATION,
         payload: locationArray.data,
       });
     } catch (error) {
@@ -105,3 +106,9 @@ export const filterByName = (name) => {
     }
   };
 };
+
+export const resetFilterNameLocation = () => {
+  return {
+    type: NO_FILTER_NAME_LOCATION,
+  };
+}
