@@ -8,6 +8,8 @@ import {
   FILTER_SEARCH,
   NO_FILTER_SEARCH,
   RESET_ALL,
+  GET_LOCATIONS,
+  FILTER_NAME
 } from "../constants";
 
 const initialState = {
@@ -17,10 +19,14 @@ const initialState = {
   filterGender: "all",
   filterSearch: "all",
   character: {},
+  locationsArray: [],
+  nameLocations: [],
+  typeLocations: [],
 };
 
 export const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    // characters
     case GET_CHARACTERS:
       return {
         ...state,
@@ -90,6 +96,15 @@ export const rootReducer = (state = initialState, { type, payload }) => {
         filterGender: "all",
         filterSearch: "all",
         filteredCharacterArray: state.characterArray,
+      };
+
+    // locations
+    case GET_LOCATIONS:
+      return {
+        ...state,
+        locationsArray: payload.locations,
+        nameLocations: payload.nameLocations,
+        typeLocations: payload.typeLocations,
       };
 
     default:

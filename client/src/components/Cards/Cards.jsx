@@ -3,22 +3,22 @@ import Card from "../Card/Card";
 import Pagination from "../../components/Pagination/Pagination";
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getAll } from '../../redux/actions'
+/* import { getAll } from '../../redux/actions' */
 import "./Cards.scss";
 import Filter from "../Filter/Filter";
 import Loading from "../Loading/Loading";
 
 export default function Cards() {
-    const dispatch = useDispatch();
+    /* const dispatch = useDispatch(); */
     /* const characterArray = useSelector(state => state.characterArray); */
     const filteredCharacterArray = useSelector(state => state.filteredCharacterArray);
 
     const [cards, setCards] = useState([]);
 
-    useEffect(() => {
+    /* useEffect(() => {
         dispatch(getAll());
         setCards(filteredCharacterArray);
-    }, [dispatch]);
+    }, [dispatch]); */
 
     useEffect(() => {
         setCards(filteredCharacterArray);

@@ -10,8 +10,11 @@ import {
   FILTER_SEARCH,
   NO_FILTER_SEARCH,
   RESET_ALL,
+  GET_LOCATIONS,
+  FILTER_NAME,
 } from "../constants";
 
+// characters
 export const getAll = () => {
   return async (dispatch) => {
     try {
@@ -56,18 +59,49 @@ export const resetFilterGender = () => {
 export const filterBySearch = (name) => {
   return {
     type: FILTER_SEARCH,
-    payload: name
+    payload: name,
   };
-}
+};
 
 export const resetFilterSearch = () => {
   return {
     type: NO_FILTER_SEARCH,
-  }
-}
+  };
+};
 
 export const restAll = () => {
   return {
-    type: RESET_ALL         
+    type: RESET_ALL,
+  };
+};
+
+// locations
+export const getAllLocations = () => {
+  return async (dispatch) => {
+    try {
+      const locationArray = await axios.get(`${API_HOST}/locations`);
+
+      return dispatch({
+        type: GET_LOCATIONS,
+        payload: locationArray.data,
+      });
+    } catch (error) {
+      console.log(error, "getAll ||Error||");
+    }
+  };
+};
+
+export const filterByName = (name) => {
+  return async (dispatch) => {
+    try {
+      const locationArray = await axios.get(`${API_HOST}/locations/${name}`);
+
+      return dispatch({
+        type: FILTER_NAME,
+        payload: locationArray.data,
+      });
+    } catch (error) {
+      console.log(error, "getAll ||Error||");
+    }
   };
 };
