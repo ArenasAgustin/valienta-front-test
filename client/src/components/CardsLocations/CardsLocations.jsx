@@ -77,7 +77,7 @@ export default function CardsLocations() {
     }
 
     return (
-        <div className='card__container-background'>
+        <div className='card-location__container-background'>
             <div className="card__container">
                 <FilterLocation />
 

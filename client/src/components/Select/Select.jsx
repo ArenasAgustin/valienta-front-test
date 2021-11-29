@@ -6,7 +6,9 @@ import {
     resetFilterGender,
     resetFilterStatus,
     resetFilterNameLocation,
-    filterByNameLocation
+    filterByNameLocation,
+    filterByTypeLocation,
+    resetFilterTypeLocation
 } from '../../redux/actions';
 import './Select.scss';
 
@@ -72,6 +74,8 @@ export default function Select({ filterType, search, reset }) {
                 break;
 
             case 'typeLocation':
+                if (filter.value !== 'all') dispatch(filterByTypeLocation(filter.value));
+                else dispatch(resetFilterTypeLocation());
                 break;
 
             default:

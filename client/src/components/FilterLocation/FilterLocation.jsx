@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Select from "../Select/Select";
 import { useDispatch, useSelector } from "react-redux";
-import { restAll } from "../../redux/actions/index";
+import { resetLocation } from "../../redux/actions/index";
 import './FilterLocation.scss';
 
 export default function Filter() {
@@ -31,7 +31,7 @@ export default function Filter() {
     };
 
     const handleReset = () => {
-        dispatch(restAll());
+        dispatch(resetLocation());
         handleShow();
         handleResetSelect();
     };

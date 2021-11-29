@@ -13,6 +13,9 @@ import {
   GET_LOCATIONS,
   FILTER_NAME_LOCATION,
   NO_FILTER_NAME_LOCATION,
+  FILTER_TYPE_LOCATION,
+  NO_FILTER_TYPE_LOCATION,
+  RESET_LOCATION
 } from "../constants";
 
 // characters
@@ -111,4 +114,23 @@ export const resetFilterNameLocation = () => {
   return {
     type: NO_FILTER_NAME_LOCATION,
   };
-}
+};
+
+export const filterByTypeLocation = (type) => {
+  return {
+    type: FILTER_TYPE_LOCATION,
+    payload: type,
+  };
+};
+
+export const resetFilterTypeLocation = () => {
+  return {
+    type: NO_FILTER_TYPE_LOCATION,
+  };
+};
+
+export const resetLocation = () => {
+  return {
+    type: RESET_LOCATION,
+  };
+};

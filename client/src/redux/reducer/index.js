@@ -10,7 +10,10 @@ import {
   RESET_ALL,
   GET_LOCATIONS,
   FILTER_NAME_LOCATION,
-  NO_FILTER_NAME_LOCATION
+  NO_FILTER_NAME_LOCATION,
+  FILTER_TYPE_LOCATION,
+  NO_FILTER_TYPE_LOCATION,
+  RESET_LOCATION,
 } from "../constants";
 
 const initialState = {
@@ -109,7 +112,7 @@ export const rootReducer = (state = initialState, { type, payload }) => {
         nameLocations: payload.nameLocations,
         typeLocations: payload.typeLocations,
       };
-    
+
     case FILTER_NAME_LOCATION:
       return {
         ...state,
@@ -117,6 +120,26 @@ export const rootReducer = (state = initialState, { type, payload }) => {
       };
 
     case NO_FILTER_NAME_LOCATION:
+      return {
+        ...state,
+        filteredLocationsArray: state.locationsArray,
+      };
+
+    case FILTER_TYPE_LOCATION:
+      return {
+        ...state,
+        filteredLocationsArray: state.filteredLocationsArray.filter(
+          (location) => location.type === payload
+        ),
+      };
+
+    case NO_FILTER_TYPE_LOCATION:
+      return {
+        ...state,
+        filteredLocationsArray: state.filteredLocationsArray,
+      };
+
+    case RESET_LOCATION:
       return {
         ...state,
         filteredLocationsArray: state.locationsArray,

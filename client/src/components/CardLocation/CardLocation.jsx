@@ -4,7 +4,7 @@ import './CardLocation.scss';
 export default function CardLocation({ name, type, dimension }) {
 
     return (
-        <div className='card'>
+        <div className='card-location'>
             <header className='card__header'>
                 {/* <img className='card__icon' src={image} alt={`image of ${name}`} /> */}
             </header>
