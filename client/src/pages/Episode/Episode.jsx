@@ -17,7 +17,7 @@ export default function Home() {
             </div>
 
             <div>
-                <CardsLocationsEpisodes />
+                <CardsLocationsEpisodes locationOrEpisode={'episode'} />
             </div>
 
             <div>

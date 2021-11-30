@@ -42,3 +42,19 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+body::-webkit-scrollbar {
+  width: .9em;
+  border-radius: 8px;
+}
+ 
+body::-webkit-scrollbar-track {
+  background: #191c21;
+  border-left: 1px solid #60636d;
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: #60636d;
+  outline: 1px solid #60636d;
+  border-radius: 8px;
+}

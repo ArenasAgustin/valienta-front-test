@@ -4,8 +4,6 @@ const { Schema } = mongoose;
 const EpisodeSchema = new Schema({
   name: {
     type: String,
-    required: true,
-    unique: true,
   },
   url: {
     type: String,
@@ -15,6 +13,8 @@ const EpisodeSchema = new Schema({
   },
   episode: {
     type: String,
+    required: true,
+    unique: true,
   },
 });
 

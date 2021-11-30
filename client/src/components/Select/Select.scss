@@ -74,6 +74,7 @@
     .select-box__list {
         position: absolute;
         width: 100%;
+        height: 120px;
         padding: 0;
         list-style: none;
         opacity: 0;
@@ -84,6 +85,24 @@
         animation-timing-function: step-start;
         box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
         z-index: 100;
+        margin-top: 10px;
+        overflow: auto;
+    }
+
+    .select-box__list::-webkit-scrollbar {
+        width: .9em;
+        border-radius: 8px;
+    }
+
+    .select-box__list::-webkit-scrollbar-track {
+        background: #868994;
+        border-left: 1px solid #505a6a;
+    }
+
+    .select-box__list::-webkit-scrollbar-thumb {
+        background-color: #505a6a;
+        outline: 1px solid #505a6a;
+        border-radius: 8px;
     }
 
     .select-box__option {

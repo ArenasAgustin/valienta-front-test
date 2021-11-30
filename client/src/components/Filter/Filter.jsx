@@ -45,9 +45,19 @@ export default function Filter() {
         <div className="filter">
             <div className={`filter__container ${showFilters ? 'show-container' : ''}`}>
                 <div className="filter__container-selects">
-                    <Select filterType='status' search={search} reset={reset} />
+                    <Select
+                        filterType='status'
+                        search={search}
+                        reset={reset}
+                        arraySelect={['all', 'Alive', 'Dead', 'unknown']}
+                    />
 
-                    <Select filterType='gender' search={search} reset={reset} />
+                    <Select
+                        filterType='gender'
+                        search={search}
+                        reset={reset}
+                        arraySelect={['all', 'Female', 'Male', 'Genderless', 'unknown']}
+                    />
                 </div>
 
                 <div className="filter__container-search-bar">

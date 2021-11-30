@@ -5,18 +5,19 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 /* import { getAll } from '../../redux/actions' */
 import "./CardsLocationsEpisodes.scss";
-import FilterLocation from "../FilterLocation/FilterLocation";
+import FilterLocation from "../FilterLocationEpisode/FilterLocationEpisode";
 import Loading from "../Loading/Loading";
 
-export default function CardsLocationsEpisodes() {
+export default function CardsLocationsEpisodes({ locationOrEpisode }) {
     /* const locationsArray = useSelector(state => state.locationsArray); */
     const filteredCharacterArray = useSelector(state => state.filteredLocationsArray);
+    const filteredEpisodeArray = useSelector(state => state.filteredEpisodesArray);
 
     const [cards, setCards] = useState([]);
 
     useEffect(() => {
-        setCards(filteredCharacterArray);
-    }, [filteredCharacterArray]);
+        setCards(locationOrEpisode === 'location' ? filteredCharacterArray : filteredEpisodeArray);
+    }, [filteredCharacterArray, filteredEpisodeArray]);
 
     //number of cards
     const [page, setPage] = useState({
@@ -79,7 +80,7 @@ export default function CardsLocationsEpisodes() {
     return (
         <div className='card-location__container-background'>
             <div className="card__container">
-                <FilterLocation />
+                <FilterLocation locationOrEpisode={locationOrEpisode} />
 
                 {cardsPagesArray.length
                     ? <>
@@ -87,12 +88,12 @@ export default function CardsLocationsEpisodes() {
                             {cardsPagesArray.map((location, index) => {
                                 return <Card
                                     key={index}
-                                    name={location.name}
-                                    type={location.type}
-                                    dimension={location.dimension}
-                                    url={location.url}
-                                    residents={location.residents}
-                                    id={location.id}
+                                    name={location?.name}
+                                    type={location?.type}
+                                    dimension={location?.dimension}
+                                    url={location?.url}
+                                    residents={location?.residents}
+                                    id={location?.id}
                                 />;
                             })}
 

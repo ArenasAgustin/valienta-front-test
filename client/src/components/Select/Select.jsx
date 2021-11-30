@@ -8,42 +8,18 @@ import {
     resetFilterNameLocation,
     filterByNameLocation,
     filterByTypeLocation,
-    resetFilterTypeLocation
+    resetFilterTypeLocation,
+    filterByNameEpisode,
+    resetFilterNameEpisode,
+    filterByCodeEpisode,
+    resetFilterCodeEpisode
 } from '../../redux/actions';
 import './Select.scss';
 
-export default function Select({ filterType, search, reset }) {
+export default function Select({ filterType, search, reset, arraySelect }) {
     const dispatch = useDispatch();
 
-    const filterStatus = ['all', 'Alive', 'Dead', 'unknown'];
-    const filterGender = ['all', 'Female', 'Male', 'Genderless', 'unknown'];
-
-    const nameLocations = useSelector(state => state.nameLocations);
-    const typeLocations = useSelector(state => state.typeLocations);
-
-    const [nameArray, setNameArray] = useState(nameLocations);
-    const [typeArray, setTypeArray] = useState(typeLocations);
-
-    const selectFilter = () => {
-        switch (filterType) {
-            case 'status':
-                return filterStatus
-
-            case 'gender':
-                return filterGender
-
-            case 'nameLocation':
-                return nameArray
-
-            case 'typeLocation':
-                return typeArray
-
-            default:
-                return ['all']
-        }
-    }
-
-    const [filterArray, setFilterArray] = useState(selectFilter());
+    const [filterArray, setFilterArray] = useState(arraySelect);
     const [filter, setFilter] = useState({
         value: filterArray[0],
         index: 0
@@ -59,23 +35,33 @@ export default function Select({ filterType, search, reset }) {
     useEffect(() => {
         switch (filterType) {
             case 'status':
-                if (filter.value !== 'all') dispatch(filterByStatus(filter.value))
+                if (filter.value !== 'all' && filter.value) dispatch(filterByStatus(filter.value))
                 else dispatch(resetFilterStatus())
                 break;
 
             case 'gender':
-                if (filter.value !== 'all') dispatch(filterByGender(filter.value))
+                if (filter.value !== 'all' && filter.value) dispatch(filterByGender(filter.value))
                 else dispatch(resetFilterGender())
                 break;
 
             case 'nameLocation':
-                if (filter.value !== 'all') dispatch(filterByNameLocation(filter.value));
+                if (filter.value !== 'all' && filter.value) dispatch(filterByNameLocation(filter.value));
                 else dispatch(resetFilterNameLocation());
                 break;
 
             case 'typeLocation':
-                if (filter.value !== 'all') dispatch(filterByTypeLocation(filter.value));
+                if (filter.value !== 'all' && filter.value) dispatch(filterByTypeLocation(filter.value));
                 else dispatch(resetFilterTypeLocation());
+                break;
+
+            case 'nameEpisode':
+                if (filter.value !== 'all' && filter.value) dispatch(filterByNameEpisode(filter.value));
+                else dispatch(resetFilterNameEpisode());
+                break;
+
+            case 'codeEpisode':
+                if (filter.value !== 'all' && filter.value) dispatch(filterByCodeEpisode(filter.value));
+                else dispatch(resetFilterCodeEpisode());
                 break;
 
             default:
@@ -92,10 +78,8 @@ export default function Select({ filterType, search, reset }) {
     }, [reset]);
 
     useEffect(() => {
-        setNameArray(nameLocations);
-        setTypeArray(typeLocations);
-    }, [nameLocations, typeLocations]);
-
+        setFilterArray(arraySelect);
+    }, [arraySelect]);
 
     return (
         <div className="select-box">

@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getAll, getAllLocations } from '../../redux/actions'
+import { getAll, getAllLocations, getAllEpisodes } from '../../redux/actions'
 import './Landing.scss'
 
 export default function Landing() {
@@ -11,6 +11,7 @@ export default function Landing() {
     useEffect(() => {
         dispatch(getAll());
         dispatch(getAllLocations());
+        dispatch(getAllEpisodes());
     }, [dispatch]);
 
     return (

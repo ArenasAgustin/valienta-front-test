@@ -141,7 +141,7 @@ export const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         filteredLocationsArray: state.filteredLocationsArray.filter(
-          (location) => location.type === payload
+          (location) => location?.type === payload
         ),
       };
 
@@ -163,7 +163,7 @@ export const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         episodesArray: payload.episodes,
         filteredEpisodesArray: payload.episodes,
-        codeEpisodes: payload.codeEpisodes,
+        codeEpisodes: payload.episodeCode,
         nameEpisodes: payload.nameEpisodes,
       };
 

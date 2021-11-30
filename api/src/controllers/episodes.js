@@ -48,14 +48,11 @@ const filterByNameEpisodes = async (req, res) => {
 
     name.replace("%20", " ");
 
-    const filteredEpisodes = await Episode.find({ name: name });
+    const filteredEpisodes = await Episode.find({ name });
 
     res.send([filteredEpisodes]);
   } catch (error) {
-    res.send({
-      status: "error",
-      error,
-    });
+    res.send(error);
   }
 };
 
