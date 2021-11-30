@@ -26,7 +26,7 @@ const getLocations = async (req, res) => {
       typeLocations.add(location.type);
       nameLocations.add(location.name);
       (await Location.findOne({ name: location.name })) ||
-        Location.create(location);
+        (await Location.create(location));
     });
 
     res.send({
@@ -47,8 +47,6 @@ const filterByName = async (req, res) => {
     const { name } = req.params;
 
     name.replace("%20", " ");
-
-    console.log(name);  
 
     const filteredLocations = await Location.findOne({ name });
 

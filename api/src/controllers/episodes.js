@@ -1,6 +1,5 @@
 const axios = require("axios");
-
-let episodes = [];
+const Episode = require("../models/episode");
 
 const getEpisodes = async (req, res) => {
   try {
@@ -14,21 +13,27 @@ const getEpisodes = async (req, res) => {
       "https://rickandmortyapi.com/api/episode/?page=3"
     );
 
-    episodes = [
+    const episodes = [
       ...episodePage1.data.results,
       ...episodePage2.data.results,
       ...episodePage3.data.results,
     ];
 
-    const nameEpisodes = new Set();
-    const episodeCode = new Set();
+    const nameEpisodes = new Set(["all"]);
+    const episodeCode = new Set(["all"]);
 
-    episodes.forEach((episode) => {
+    episodes.forEach(async (episode) => {
       nameEpisodes.add(episode.name);
       episodeCode.add(episode.episode);
+      (await Episode.findOne({ name: episode.episode })) ||
+        (await Episode.create(episode));
     });
 
-    res.send({ episodes, nameEpisodes, episodeCode });
+    res.send({
+      episodes,
+      nameEpisodes: [...nameEpisodes],
+      episodeCode: [...episodeCode],
+    });
   } catch (error) {
     res.send({
       status: "error",
@@ -37,13 +42,13 @@ const getEpisodes = async (req, res) => {
   }
 };
 
-const filterByName = (req, res) => {
+const filterByNameEpisodes = async (req, res) => {
   try {
     const { name } = req.params;
 
-    const filteredEpisodes = episodes.filter((episode) =>
-      episode.name.toLowerCase().includes(name.toLowerCase())
-    );
+    name.replace("%20", " ");
+
+    const filteredEpisodes = await Episode.find({ name: name });
 
     res.send(filteredEpisodes);
   } catch (error) {
@@ -56,5 +61,5 @@ const filterByName = (req, res) => {
 
 module.exports = {
   getEpisodes,
-  filterByName,
+  filterByNameEpisodes,
 };
