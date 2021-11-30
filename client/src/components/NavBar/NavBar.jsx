@@ -28,6 +28,12 @@ export default function NavBar() {
                     </li>
 
                     <li className="navbar__item">
+                        <Link to="/episode" className="navbar__link">
+                            Episode
+                        </Link>
+                    </li>
+
+                    <li className="navbar__item">
                         <Link to="/about" className="navbar__link">
                             About
                         </Link>

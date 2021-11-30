@@ -1,7 +1,7 @@
 import React from "react";
-import './CardLocation.scss';
+import './CardLocationEpisode.scss';
 
-export default function CardLocation({ name, type, dimension }) {
+export default function CardLocationEpisode({ name, type, dimension }) {
 
     return (
         <div className='card-location'>

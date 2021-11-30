@@ -15,7 +15,13 @@ import {
   NO_FILTER_NAME_LOCATION,
   FILTER_TYPE_LOCATION,
   NO_FILTER_TYPE_LOCATION,
-  RESET_LOCATION
+  RESET_LOCATION,
+  GET_EPISODES,
+  NO_FILTER_CODE_EPISODE,
+  FILTER_CODE_EPISODE,
+  NO_FILTER_NAME_EPISODE,
+  FILTER_NAME_EPISODE,
+  RESET_EPISODE
 } from "../constants";
 
 // characters
@@ -79,7 +85,7 @@ export const restAll = () => {
   };
 };
 
-// locations
+// ------------------------------------------------------------------------- locations
 export const getAllLocations = () => {
   return async (dispatch) => {
     try {
@@ -134,3 +140,59 @@ export const resetLocation = () => {
     type: RESET_LOCATION,
   };
 };
+
+// ------------------------------------------------------------------------- episodes
+export const getAllEpisodes = () => {
+  return async (dispatch) => {
+    try {
+      const episodeArray = await axios.get(`${API_HOST}/episodes`);
+
+      return dispatch({
+        type: GET_EPISODES,
+        payload: episodeArray.data,
+      });
+    } catch (error) {
+      console.log(error, "getAll ||Error||");
+    }
+  };
+}
+
+export const filterByCodeEpisode = (code) => {
+  return {
+    type: FILTER_CODE_EPISODE,
+    payload: code,
+  };
+}
+
+export const resetFilterCodeEpisode = () => {
+  return {
+    type: NO_FILTER_CODE_EPISODE,
+  };
+}
+
+export const filterByNameEpisode = (name) => {
+  return async (dispatch) => {
+    try {
+      const episodeArray = await axios.get(`${API_HOST}/episodes/${name}`);
+
+      return dispatch({
+        type: FILTER_NAME_EPISODE,
+        payload: episodeArray.data,
+      });
+    } catch (error) {
+      console.log(error, "getAll ||Error||");
+    }
+  }
+}
+
+export const resetFilterNameEpisode = () => {
+  return {
+    type: NO_FILTER_NAME_EPISODE,
+  };
+}
+
+export const resetEpisode = () => {
+  return {
+    type: RESET_EPISODE,
+  };
+}

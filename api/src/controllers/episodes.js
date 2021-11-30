@@ -50,7 +50,7 @@ const filterByNameEpisodes = async (req, res) => {
 
     const filteredEpisodes = await Episode.find({ name: name });
 
-    res.send(filteredEpisodes);
+    res.send([filteredEpisodes]);
   } catch (error) {
     res.send({
       status: "error",

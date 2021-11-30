@@ -1,14 +1,14 @@
 import React from "react";
-import Card from "../CardLocation/CardLocation";
+import Card from "../CardLocationEpisode/CardLocationEpisode";
 import Pagination from "../Pagination/Pagination";
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 /* import { getAll } from '../../redux/actions' */
-import "./CardsLocations.scss";
+import "./CardsLocationsEpisodes.scss";
 import FilterLocation from "../FilterLocation/FilterLocation";
 import Loading from "../Loading/Loading";
 
-export default function CardsLocations() {
+export default function CardsLocationsEpisodes() {
     /* const locationsArray = useSelector(state => state.locationsArray); */
     const filteredCharacterArray = useSelector(state => state.filteredLocationsArray);
 

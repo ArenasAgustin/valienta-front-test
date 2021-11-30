@@ -14,6 +14,12 @@ import {
   FILTER_TYPE_LOCATION,
   NO_FILTER_TYPE_LOCATION,
   RESET_LOCATION,
+  GET_EPISODES,
+  NO_FILTER_CODE_EPISODE,
+  FILTER_CODE_EPISODE,
+  NO_FILTER_NAME_EPISODE,
+  FILTER_NAME_EPISODE,
+  RESET_EPISODE,
 } from "../constants";
 
 const initialState = {
@@ -23,15 +29,21 @@ const initialState = {
   filterGender: "all",
   filterSearch: "all",
   character: {},
+
   locationsArray: [],
   filteredLocationsArray: [],
   nameLocations: [],
   typeLocations: [],
+
+  episodesArray: [],
+  filteredEpisodesArray: [],
+  codeEpisodes: [],
+  nameEpisodes: [],
 };
 
 export const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    // characters
+    // -------------------------------------------------------------------------------------- characters
     case GET_CHARACTERS:
       return {
         ...state,
@@ -103,7 +115,7 @@ export const rootReducer = (state = initialState, { type, payload }) => {
         filteredCharacterArray: state.characterArray,
       };
 
-    // locations
+    // -------------------------------------------------------------------------------------- locations
     case GET_LOCATIONS:
       return {
         ...state,
@@ -143,6 +155,48 @@ export const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         filteredLocationsArray: state.locationsArray,
+      };
+
+    // -------------------------------------------------------------------------------------- episodes
+    case GET_EPISODES:
+      return {
+        ...state,
+        episodesArray: payload.episodes,
+        filteredEpisodesArray: payload.episodes,
+        codeEpisodes: payload.codeEpisodes,
+        nameEpisodes: payload.nameEpisodes,
+      };
+
+    case FILTER_CODE_EPISODE:
+      return {
+        ...state,
+        filteredEpisodesArray: state.filteredEpisodesArray.filter(
+          (episode) => episode.episode === payload
+        ),
+      };
+
+    case NO_FILTER_CODE_EPISODE:
+      return {
+        ...state,
+        filteredEpisodesArray: state.filteredEpisodesArray,
+      };
+
+    case FILTER_NAME_EPISODE:
+      return {
+        ...state,
+        filteredEpisodesArray: payload,
+      };
+
+    case NO_FILTER_NAME_EPISODE:
+      return {
+        ...state,
+        filteredEpisodesArray: state.episodesArray,
+      };
+
+    case RESET_EPISODE:
+      return {
+        ...state,
+        filteredEpisodesArray: state.episodesArray,
       };
 
     default:
