@@ -1,5 +1,6 @@
 import React from "react";
 import Rick from '../../assets/rick.png'
+import Logo from '../../assets/Logo-txt.png'
 import './Header.scss'
 
 export default function Header({ page = "Home" }) {
@@ -9,7 +10,7 @@ export default function Header({ page = "Home" }) {
                 page === "Home" ?
                     <div className='header__title'>
                         <img
-                            src='https://help.redbubble.com/hc/article_attachments/360002309526/Rick_and_Morty_-_logo__English_.png'
+                            src={Logo}
                             alt='logo Rick and Morty'
                             className='header__logo'
                         />

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Logo from "../../assets/Logo.png"
 import './NavBar.scss'
 
 export default function NavBar() {
@@ -8,7 +9,7 @@ export default function NavBar() {
             <nav className='navbar__element'>
                 <Link to="/" className="navbar__logo">
                     <img
-                        src="https://i.pinimg.com/originals/36/60/b1/3660b1fbf2ecd990202c611b6a9942df.png"
+                        src={Logo}
                         alt="logo Rick and Morty"
                         className="navbar__logo-img"
                     />
